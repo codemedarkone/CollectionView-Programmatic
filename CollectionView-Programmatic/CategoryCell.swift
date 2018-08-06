@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryCell: UICollectionViewCell, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     
     let cellId = "cellId"
@@ -67,6 +67,11 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegateFlowLayout, UI
         return CGSize(width: 100, height: frame.height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
+    }
+    
 }
 
 
@@ -81,8 +86,23 @@ class AppCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    let imageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "frozen")
+        iv.contentMode = .scaleAspectFit
+        iv.layer.cornerRadius = 16
+        iv.layer.masksToBounds = true
+        return iv
+    }()
+    
+    //Create a label for title, name it nameLabel
+    
+    //create category label, name it categoryLabel
+    
     func setupViews() {
-        backgroundColor = UIColor.black
+        addSubview(imageView)
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.width)
         
     }
 }
